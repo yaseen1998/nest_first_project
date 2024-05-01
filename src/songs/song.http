@@ -1,0 +1,15 @@
+GET http://localhost:3000/songs
+
+### create new song
+POST  http://localhost:3000/songs
+Content-Type: application/json
+
+{
+  "title": "Song 1",
+  "artist": ["Artist 1"],
+  "duration": "02:30",
+  "releaseDate": "2019-01-01"
+}
+
+### fetch one song
+GET http://localhost:3000/songs/tt/
