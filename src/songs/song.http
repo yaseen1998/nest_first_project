@@ -5,7 +5,7 @@ POST  http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "Song 1",
+  "title": "Song 2",
   "artists": [1],
   "lyrics": "Lyrics 1",
   "duration": "02:30",
@@ -13,9 +13,22 @@ Content-Type: application/json
 }
 
 ### fetch one song
-GET http://localhost:3000/songs/tt/
+GET http://localhost:3000/songs/5/
 
 
+### delete song
+DELETE http://localhost:3000/songs/1/
+
+### update song
+PUT http://localhost:3000/songs/2/
+Content-Type: application/json
+
+{
+  "title": "Song 3333",
+  "lyrics": "Lyrics 1",
+  "duration": "02:30",
+  "relaeaseDate": "2019-01-01"
+}
 ### create new playlist
 POST  http://localhost:3000/playlists
 Content-Type: application/json
@@ -24,4 +37,15 @@ Content-Type: application/json
   "name": "Playlist 1",
   "songs": [6],
   "user": 1
+}
+
+### create new user
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "test",
+  "password": "123456"
 }

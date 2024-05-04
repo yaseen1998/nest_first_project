@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create_song_dto';
 import { Connection } from 'src/common/constants/connection';
+import { UpdateSongDto } from './dto/update-song-dto';
 
 @Controller({
     path:"songs",
@@ -22,21 +23,21 @@ export class SongsController {
     @Get(":id")
     findOne(@Param('id',
         new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})
-    ) id: number):string{
+    ) id: number){
         // fetch the id from the url
         // const idNumber = Number(id)
         // if (isNaN(idNumber)) throw new HttpException('id is string',HttpStatus.FORBIDDEN,{cause:"e"})
-        return `get one song ${id}`
+        return this.songsSerivce.findOne(id)
     }
 
     @Put(":id")
-    update(){
-        return 'update'
+    update(@Param('id') id:number, @Body() updateSongDTO: UpdateSongDto){
+        return this.songsSerivce.update(id,updateSongDTO)
     }
 
     @Delete(":id")
-    delete_item(){
-        return "delete item"
+    delete_item(@Param('id') id:number){
+        return this.songsSerivce.remove(id)
     }
 
     @Post()

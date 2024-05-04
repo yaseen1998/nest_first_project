@@ -19,7 +19,7 @@ import {
   
     @IsDateString()
     @IsOptional()
-    readonly releasedDate: Date;
+    readonly relaeaseDate: Date;
   
     @IsMilitaryTime()
     @IsOptional()
