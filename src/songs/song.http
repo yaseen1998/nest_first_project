@@ -1,12 +1,16 @@
 GET http://localhost:3000/songs
 
+
+### pagination
+GET http://localhost:3000/songs/paginate/
+
 ### create new song
 POST  http://localhost:3000/songs
 Content-Type: application/json
 
 {
   "title": "Song 2",
-  "artists": [1],
+  "artists": [1,2],
   "lyrics": "Lyrics 1",
   "duration": "02:30",
   "releaseDate": "2019-01-01"
@@ -46,6 +50,30 @@ Content-Type: application/json
 {
   "firstName": "John",
   "lastName": "Doe",
-  "email": "test",
+  "email": "test@test.com",
   "password": "123456"
 }
+
+### create new user
+POST  http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "test@test.com",
+  "password": "123456"
+}
+
+### login
+POST  http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "123456"
+}
+
+### profile
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VySWQiOjMsImlhdCI6MTcxNDk5MDYzNCwiZXhwIjoxNzE1MDc3MDM0fQ.ks0LEXOMwelCEj1cJjY31Y5qAclP_irl7eWZlRKwvqc

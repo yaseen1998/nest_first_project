@@ -12,6 +12,7 @@ import { PlayList } from './playlists/playlist.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlayListModule } from './playlists/playlist.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 const devConfig = {port:3000};
 const proConfig = {port:4000};
 
@@ -40,7 +41,7 @@ const proConfig = {port:4000};
     }),
     SongsModule,
     PlayListModule, // benfit to add this module is to make the code more readable and maintainable
-    UserModule ,
+    UserModule, AuthModule ,
   ],
   controllers: [AppController],
   providers: [AppService,{

@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param, ParseIntPipe, Post, Put, Scope } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Delete, Get, HttpException, HttpStatus, Inject, Param, ParseIntPipe, Post, Put, Query, Scope, UseGuards } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create_song_dto';
 import { Connection } from 'src/common/constants/connection';
 import { UpdateSongDto } from './dto/update-song-dto';
+import { JwtAuthGuard } from 'src/auth/jwt_guard';
 
 @Controller({
     path:"songs",
@@ -16,10 +17,22 @@ export class SongsController {
         console.log(this.connection)
     }
     @Get()
+    // @UseGuards(JwtAuthGuard)
     findALl(){
         return this.songsSerivce.findAll()
     }
-
+    @Get("paginate")
+    paginate(
+        @Query('page', new DefaultValuePipe(1),ParseIntPipe) page=1,
+        @Query('limit', new DefaultValuePipe(10),ParseIntPipe) limit=10,
+    ){
+        console.log(page,limit)
+        limit = limit > 100 ? 100 : limit;
+        return this.songsSerivce.paginate({
+            page,
+            limit,
+        })
+    }
     @Get(":id")
     findOne(@Param('id',
         new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})
@@ -44,5 +57,6 @@ export class SongsController {
     create_item(@Body() createSongDTO: CreateSongDto){
         return this.songsSerivce.create(createSongDTO)
     }
+    
 }
 

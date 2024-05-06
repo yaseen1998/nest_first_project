@@ -1,9 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "src/user/user.entity";
 import { CreateUserDto } from "./dto/create_user_dto";
-
+import * as bcrypt from 'bcrypt';
+import { LoginDTO } from "src/auth/dto/login.dto";
 @Injectable()
 export class UsersService{
     constructor(
@@ -14,11 +15,18 @@ export class UsersService{
 
     ){}
     async create(userDTO:CreateUserDto):Promise<User>{
-        const user = new User();
-        user.firstName = userDTO.firstName;
-        user.lastName = userDTO.lastName;
-        user.email = userDTO.email;
-        user.password = userDTO.password;
-        return this.userRepo.save(user);
+        const salt = await bcrypt.genSalt(); // 2.
+    userDTO.password = await bcrypt.hash(userDTO.password, salt); // 3.
+    const user = await this.userRepo.save(userDTO); // 4.
+    delete user.password; // 5.
+    return user; // 6.
+    }
+
+    async findOne(loginDTO:LoginDTO):Promise<User>{
+        const user =  await this.userRepo.findOneBy({email:loginDTO.email});
+        if(!user){
+            throw new UnauthorizedException('Invalid credentials');
+        }
+        return user;
     }
 }

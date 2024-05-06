@@ -1,6 +1,6 @@
 import { Song } from "src/songs/song.entity";
 import { User } from "src/user/user.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('playlist')
 export class PlayList {
@@ -11,9 +11,12 @@ export class PlayList {
 
 @OneToMany(()=>Song,(song)=>song.playList)
 songs:Song[];
-
+// @JoinColumn() // this is the owning side
 
 @ManyToOne(()=>User,(user)=>user.playLists)
 user:User;
+// add created at and updated at
+@CreateDateColumn()
+createdAt:Date;
 
 }
