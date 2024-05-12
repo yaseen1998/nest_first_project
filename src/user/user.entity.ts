@@ -21,4 +21,10 @@ export class User {
 
     @OneToMany(()=>PlayList,(playlist)=>playlist.user)
     playLists:PlayList[]
+
+    @Column({nullable:true,type:'text'})
+    twoFactorSecret:string;
+
+    @Column({default:false,type:'boolean'})
+    enable2FA:boolean;
 }

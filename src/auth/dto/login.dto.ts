@@ -9,3 +9,10 @@ export class LoginDTO{
     @IsString()
     password:string;
 }
+
+
+export class ValidateTokenDTO{
+    @IsNotEmpty()
+    @IsString()
+    token:string;
+}
