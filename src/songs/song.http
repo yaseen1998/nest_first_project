@@ -7,6 +7,7 @@ GET http://localhost:3000/songs/paginate/
 ### create new song
 POST  http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VySWQiOjMsImFydGlzdElkIjoxLCJpYXQiOjE3MTQ5OTU2NzYsImV4cCI6MTcxNTA4MjA3Nn0.iliMqChv90V92L9NDbYTX5UHMjQYOfE4EQz-a_o8cFY
 
 {
   "title": "Song 2",
@@ -76,4 +77,4 @@ Content-Type: application/json
 
 ### profile
 GET http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VySWQiOjMsImlhdCI6MTcxNDk5MDYzNCwiZXhwIjoxNzE1MDc3MDM0fQ.ks0LEXOMwelCEj1cJjY31Y5qAclP_irl7eWZlRKwvqc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VySWQiOjMsImFydGlzdElkIjoxLCJpYXQiOjE3MTQ5OTU2NzYsImV4cCI6MTcxNTA4MjA3Nn0.iliMqChv90V92L9NDbYTX5UHMjQYOfE4EQz-a_o8cFY
