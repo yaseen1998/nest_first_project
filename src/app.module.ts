@@ -13,6 +13,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlayListModule } from './playlists/playlist.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { dataSourceOption } from 'db/data_source';
+import { SeedModule } from './seed/seed.module';
 const devConfig = {port:3000};
 const proConfig = {port:4000};
 
@@ -29,19 +31,10 @@ const proConfig = {port:4000};
 // })
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'nest',
-      host: 'localhost',
-      port: 5433,
-      username: 'postgres',
-      password: '202020',
-      entities: [Song, Artist, User, PlayList],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(dataSourceOption),
     SongsModule,
     PlayListModule, // benfit to add this module is to make the code more readable and maintainable
-    UserModule, AuthModule ,
+    UserModule, AuthModule, SeedModule ,
   ],
   controllers: [AppController],
   providers: [AppService,{

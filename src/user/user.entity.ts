@@ -30,4 +30,7 @@ export class User {
 
     @Column({nullable:true,type:'text'})
     apiKey:string;
+
+    @Column({nullable:true,type:'text'})
+    phone:string;
 }
