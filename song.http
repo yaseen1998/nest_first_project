@@ -51,7 +51,7 @@ Content-Type: application/json
 {
   "firstName": "John",
   "lastName": "Doe",
-  "email": "test@test.com",
+  "email": "test3@test.com",
   "password": "123456"
 }
 
@@ -62,7 +62,7 @@ Content-Type: application/json
 {
   "firstName": "John",
   "lastName": "Doe",
-  "email": "test@test.com",
+  "email": "test3@test.com",
   "password": "123456"
 }
 
@@ -96,3 +96,8 @@ Content-Type: application/json
 ### Disable 2FA
 Get http://localhost:3000/auth/disable-2fa
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VySWQiOjMsImFydGlzdElkIjoxLCJpYXQiOjE3MTU1MTIxNTMsImV4cCI6MTcxNTU5ODU1M30.5XmCr21AxmWmX_ByEMjs4RELLXFrm14sGPExozbQxIs
+
+
+### Access Profile
+Get http://localhost:3000/auth/profile
+Authorization: Bearer 3346fbb2-6d0e-4bf8-aeed-96a501122a0f

@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { LoginDTO, ValidateTokenDTO } from './dto/login.dto';
 import { JwtAuthGuard } from './jwt_guard';
 import { Enable2FaType } from './types';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -35,5 +36,15 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     disable2FA(@Request() req){
         return this.authService.disable2FA(req.user.userId);
+    }
+
+    @Get("profile")
+    @UseGuards(AuthGuard("bearer"))
+    async profile(@Request() req){
+        console.log(req.user);
+        return {
+            message:"Profile",
+            user:req.user
+        }
     }
 }

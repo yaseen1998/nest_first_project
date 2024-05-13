@@ -6,6 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ArtistsService } from 'src/artists/artists.service';
 import * as speakeasy from 'speakeasy';
 import { Enable2FaType } from './types';
+import { User } from 'src/user/user.entity';
 @Injectable()
 export class AuthService {
 
@@ -61,6 +62,10 @@ export class AuthService {
     async disable2FA(userId: number){
         return await this.userService.disable2FA(userId);
         
+    }
+
+    async validateApiKey(apiKey: string):Promise<User> {
+        return await this.userService.findByApiKey(apiKey);
     }
 
 }

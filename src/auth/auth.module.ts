@@ -6,9 +6,10 @@ import { JwtModule } from '@nestjs/jwt';
 import { authConstants } from './auth.constant';
 import { JwtStrategy } from './jwt_strategy';
 import { ArtistsModule } from 'src/artists/artists.module';
+import { ApiKeyStrategy } from './api_key_stategy';
 
 @Module({
-  providers: [AuthService,JwtStrategy],
+  providers: [AuthService,ApiKeyStrategy,JwtStrategy],
   controllers: [AuthController],
   imports: [UserModule,ArtistsModule,
     JwtModule.register({
